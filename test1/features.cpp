@@ -58,7 +58,7 @@ void HaarEvaluator::generateFeatures(){
 					{
 						features.push_back(Feature(x, y, t1, t2, 5));
 					}
-					//ÓĞt3
+					//æœ‰t3
 					for (int t3 = 1; t3 <= winsize; t3++)
 					{
 
@@ -71,14 +71,14 @@ void HaarEvaluator::generateFeatures(){
 
 void HaarEvaluator::preCalG(Mat image){
 
-	//¼ÆËã»ı·ÖÍ¼(d = 0)
+	//è®¡ç®—ç§¯åˆ†å›¾(d = 0)
 	int s = 0;
 	for (int j = 0; j < heigh; j++)
 	{
 		s = 0;
 		for (int i = 0; i < width; i++)
 		{
-			s += image.at<char>(heigh - 1 - j, i);//Ä¬ÈÏÍ¼Ïñ(rows,cols)Ô­µãÔÚ×óÏÂ½Ç
+			s += image.at<char>(heigh - 1 - j, i);//é»˜è®¤å›¾åƒ(rows,cols)åŸç‚¹åœ¨å·¦ä¸‹è§’
 			if (j > 0)
 				G[i][j][0] = s + G[i][j - 1][0];
 			else
@@ -86,36 +86,36 @@ void HaarEvaluator::preCalG(Mat image){
 		}
 	}
 
-	//¼ÆËã´øĞ±ÂÊµÄ»ı·ÖÍ¼(d != 0)
+	//è®¡ç®—å¸¦æ–œç‡çš„ç§¯åˆ†å›¾(d != 0)
 	int x_d, y_d, x_c, y_c;
 	for (int d = 1; d < d_set; d++)
 	{
-		//ÉèÖÃĞ±ÂÊÏàÓ¦x_d£¬y_d
+		//è®¾ç½®æ–œç‡ç›¸åº”x_dï¼Œy_d
 		if (d == 1)
 			x_d = 1;
 		else if (d == 2)
 			x_d = -1;
 		y_d = 1;
 
-		//¼ÆËã
+		//è®¡ç®—
 		for (int j = 0; j < heigh; j++)
 		{
 			for (int i = 0; i < width; i++)
 			{
-				if (d == d_set - 1)//Ğ±ÂÊÎªÎŞÇî´ó
+				if (d == d_set - 1)//æ–œç‡ä¸ºæ— ç©·å¤§
 				{
 					G[i][j][d] = 0;
 				}
 				else{
 					if ((i - x_d < 0) || (j - y_d < 0))
-						G[i][j][d] = 0;//x_c,y_cµã²»ÔÚÍ¼Ïñ·¶Î§ÄÚ
+						G[i][j][d] = 0;//x_c,y_cç‚¹ä¸åœ¨å›¾åƒèŒƒå›´å†…
 					else
 					{
 						x_c = i - x_d;
 						y_c = j - y_d;
 						G[i][j][d] = abs(G[i][y_c][0] - G[x_c][y_c][0]) + G[x_c][y_c][d];
 					}
-					G[i][j][d] += 0.5 * image.at<char>(heigh - 1 - j, i);//Ä¬ÈÏÍ¼Ïñ(rows,cols)Ô­µãÔÚ×óÏÂ½Ç
+					G[i][j][d] += 0.5 * image.at<char>(heigh - 1 - j, i);//é»˜è®¤å›¾åƒ(rows,cols)åŸç‚¹åœ¨å·¦ä¸‹è§’
 				}
 			}
 		}
@@ -243,35 +243,35 @@ HaarEvaluator::Feature::Feature(int x, int y, int t1, int t2, int t3, int type){
 }
 float HaarEvaluator::Feature::calc(vector<Point2i> vertices, float G[width][heigh][d_set]){
 
-	float sum = 0;//ÌØÕ÷Öµ
-	int n = vertices.size();//¶¥µãÊı	
-	int d = 0;//Ğ±ÂÊ
-	Point2i a;//tempµã
+	float sum = 0;//ç‰¹å¾å€¼
+	int n = vertices.size();//é¡¶ç‚¹æ•°	
+	int d = 0;//æ–œç‡
+	Point2i a;//tempç‚¹
 	Point2i b;
 
 	for (int i = 0; i < n; i++)
 	{
-		//Ë³Ê±ÕëÈ¡Á½µã
+		//é¡ºæ—¶é’ˆå–ä¸¤ç‚¹
 		a = vertices.at(i);
 		if (i < n - 1)
 			b = vertices.at(i + 1);
 		else
-			b = vertices.at(0);//ÊÇ×îºóÒ»¸öµã£¬ÔòÓ¦¸Ã·µ»Ø³õÊ¼µã£¬¹¹³É±Õ»·
+			b = vertices.at(0);//æ˜¯æœ€åä¸€ä¸ªç‚¹ï¼Œåˆ™åº”è¯¥è¿”å›åˆå§‹ç‚¹ï¼Œæ„æˆé—­ç¯
 
-		//¼ÆËãĞ±ÂÊ	
+		//è®¡ç®—æ–œç‡	
 		if (b.x == a.x)
 			d = d_set - 1;
 		else
 			d = (b.y - a.y) / (b.x - a.x);
 
-		//ÉèÖÃĞ±ÂÊ
+		//è®¾ç½®æ–œç‡
 		if (log){
-			//¼ì²éÊÇ·ñÓĞÌØÕ÷µÄ±ß½çÉèÖÃ´íÎó
+			//æ£€æŸ¥æ˜¯å¦æœ‰ç‰¹å¾çš„è¾¹ç•Œè®¾ç½®é”™è¯¯
 			if ((a.x < 0) || (a.y < 0) || (b.x < 0) || (b.y < 0))
 			{
-				cout << "×ø±ê³ö´í" << endl;
+				cout << "åæ ‡å‡ºé”™" << endl;
 			}
-			//ÉèÖÃĞ±ÂÊ
+			//è®¾ç½®æ–œç‡
 			switch (d)
 			{
 			case 0:
@@ -281,9 +281,9 @@ float HaarEvaluator::Feature::calc(vector<Point2i> vertices, float G[width][heig
 			case -1:
 				d = 2; break;
 			case d_set - 1:
-				cout << "Ğ±ÂÊÎªÎŞÇî´ó" << endl; break;
+				cout << "æ–œç‡ä¸ºæ— ç©·å¤§" << endl; break;
 			default:
-				cout << "Ğ±ÂÊ²»ÔÚĞ±ÂÊ¼¯ÖĞ£¡" << endl; break;
+				cout << "æ–œç‡ä¸åœ¨æ–œç‡é›†ä¸­ï¼" << endl; break;
 			}
 		}
 		else
@@ -296,7 +296,7 @@ float HaarEvaluator::Feature::calc(vector<Point2i> vertices, float G[width][heig
 				d = 2;
 		}
 
-		//¼ÆËãÌØÕ÷Öµ
+		//è®¡ç®—ç‰¹å¾å€¼
 		if (a.x < b.x)
 			sum += abs(G[b.x][b.y][d] - G[a.x][a.y][d]);
 		else
