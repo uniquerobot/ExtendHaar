@@ -270,7 +270,6 @@ float HaarEvaluator::Feature::calc(vector<Point2i> vertices, float G[width][heig
 			if ((a.x < 0) || (a.y < 0) || (b.x < 0) || (b.y < 0))
 			{
 				cout << "坐标出错" << endl;
-				return;
 			}
 			//设置斜率
 			switch (d)
