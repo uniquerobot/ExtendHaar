@@ -21,12 +21,18 @@
     <ClCompile Include="features.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ImgReader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="features.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="parameters.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ImgReader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

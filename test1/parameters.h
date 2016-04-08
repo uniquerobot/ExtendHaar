@@ -12,5 +12,7 @@ using namespace std;
 # define d_set 4
 # define log true
 # define sqrt2 sqrt(2)
+# define posDir "posData"
+# define negDir "negData"
 
 #endif

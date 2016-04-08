@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="features.cpp" />
+    <ClCompile Include="ImgReader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="features.h" />
+    <ClInclude Include="ImgReader.h" />
     <ClInclude Include="parameters.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
