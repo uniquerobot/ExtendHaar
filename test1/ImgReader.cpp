@@ -19,11 +19,11 @@ ImgReader::ImgReader(){
 	//添加正负样本
 	for (int i = 0; i < posFiles.size(); i++)
 	{
-		posSamples.push_back(Sample(posFiles.at(i), 1));
+		posSamples.push_back(Sample(posFiles.at(i), pos));
 	}
 	for (int i = 0; i < negFiles.size(); i++)
 	{
-		negSamples.push_back(Sample(negFiles.at(i), 0));
+		negSamples.push_back(Sample(negFiles.at(i), neg));
 	}
 	
 	
@@ -57,11 +57,11 @@ void ImgReader::getFiles(string path, vector<string>& files)
 }
 //--------------------- Sample ----------------
 /*
-type 1 为正样本
-type 0 为负样本
+type pos 为正样本
+type neg 为负样本
 */
 Sample::Sample(string _dirName, int _type){
-	m_img = imread(_dirName, 0);
+	m_img = imread(_dirName, 0); //0--灰度图
 	preCalG(m_img);
 	m_weight = 0;
 	m_value = 0;
