@@ -17,6 +17,7 @@ public:
 	~Sample(){};
 	float m_G[width][heigh][d_set];
 	void setValue(float _value) { m_value = _value; };
+	float getValue() const { return m_value; };
 
 private:
 	void preCalG(Mat image);

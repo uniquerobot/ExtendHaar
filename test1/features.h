@@ -12,6 +12,8 @@
 # define E_1 5
 # define F_1 6
 
+bool comp(const Sample &a, const Sample &b);
+
 class HaarEvaluator
 {
 public:
@@ -20,9 +22,11 @@ public:
 	
 private:
 	void generateFeatures(); 
-	void calcSamplesVal(int featureIdx);
 	void setSamples();
-
+	void calcSamplesVal(int featureIdx);
+	void calcThreshold(int featureIdx);
+	void sortValue(int featureIdx);
+	
 	class Feature
 	{
 	public:
@@ -31,6 +35,8 @@ private:
 		Feature(int x, int y, int t1, int t2, int type);
 		Feature(int x, int y, int t1, int t2, int t3, int type);
 		float calc(float G[width][heigh][d_set]);
+		float getThreshold() { return threshold; };
+		void setThreshold(float _threshold){ threshold = _threshold; };
 
 	private:
 		float fastPolyIntegration(vector<Point2i> vertices, float G[width][heigh][d_set]);
