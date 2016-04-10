@@ -9,6 +9,25 @@
 #define pos 1
 #define neg 0
 
+class Sample
+{
+public:
+	Sample(string _dirName, int _type);
+	Sample(Mat _img, int _type);
+	~Sample(){};
+	float m_G[width][heigh][d_set];
+	void setValue(float _value) { m_value = _value; };
+
+private:
+	void preCalG(Mat image);
+
+	Mat m_img;
+	int m_type;
+	float m_weight;
+	float m_value;
+
+};
+
 class ImgReader
 {
 	public:
@@ -27,20 +46,4 @@ class ImgReader
 
 };
 
-class Sample
-{
-public:
-	Sample(string _dirName, int _type);
-	~Sample(){};
-	float m_G[width][heigh][d_set];//todo ·â×°
-
-private:
-	void preCalG(Mat image);
-
-	Mat m_img;
-	int m_type;
-	float m_weight;
-	float m_value;
-
-};
 #endif
