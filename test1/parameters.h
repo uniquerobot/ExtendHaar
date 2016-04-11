@@ -14,7 +14,7 @@ using namespace std;
 # define sqrt2 sqrt(2)
 # define posDir "posData"
 # define negDir "negData"
-# define posNum 2000
-# define negNum 4000
+# define posNum 100
+# define negNum 200
 
 #endif

@@ -13,11 +13,15 @@ class Sample
 {
 public:
 	Sample(string _dirName, int _type);
-	Sample(Mat _img, int _type);
+	Sample(Mat _img, int _type);//test
 	~Sample(){};
-	float m_G[width][heigh][d_set];
 	void setValue(float _value) { m_value = _value; };
+	void setWeight(float _weight) { m_weight = _weight; };
 	float getValue() const { return m_value; };
+	float getWeight() const { return m_weight; };
+	float getType() const { return m_type; };
+
+	float m_G[width][heigh][d_set];
 
 private:
 	void preCalG(Mat image);
