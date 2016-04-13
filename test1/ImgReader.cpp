@@ -9,16 +9,16 @@ Sample::Sample(string _dirName, int _type){
 	m_img = imread(_dirName, 0); //0--ª“∂»Õº
 	preCalG(m_img);
 	m_type = _type;
-	m_weight = 0;
-	m_value = 0;
+	//m_weight = 0;
+	//m_value = 0;
 }
 
 Sample::Sample(Mat _img, int _type){
 	m_img = _img; //0--ª“∂»Õº
 	preCalG(m_img);
 	m_type = _type;
-	m_weight = 0;
-	m_value = 0;
+	//m_weight = 0;
+	//m_value = 0;
 }
 
 void Sample::preCalG(Mat image){
