@@ -6,6 +6,7 @@
  *todo
  * feature 构造函数
  * F_1特征bug
+ * update_weight!!!
  */
 
 #include "parameters.h"

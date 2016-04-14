@@ -12,7 +12,31 @@
 # define E_1 5
 # define F_1 6
 
-bool comp(const Sample &a, const Sample &b);
+# define big true
+# define small false
+
+class Block
+{
+public:
+	~Block() {};
+	Block(float _val, int _Idx, bool _type) :b_value(_val), b_index(_Idx), b_positive(_type){};
+
+	float getValue() const { return b_value; };
+	int getIndex() const { return b_index; };
+	bool isPos() const { return b_positive; };
+	void setValue(float _val) { b_value = _val; };
+	void setIndex(int _Idx) { b_index = _Idx; };
+	void setPos(bool _type) { b_positive = _type; };
+
+private:
+	float b_value;
+	int b_index;
+	bool b_positive;
+
+};
+
+//特征值排序函数(升序)
+bool comp(const Block &a, const Block &b);
 
 class HaarEvaluator
 {
@@ -21,11 +45,14 @@ public:
 	~HaarEvaluator() {};
 
 private:
-	void generateFeatures(); 
+	void generateFeatures();
 	void setSamples();
-	void calcSampleVal(int featureIdx, int sampleIdx);
-	void calcThreshold(int featureIdx);
-	
+
+	void initial();
+	void train();
+	void normalize(float &all_face, float &all_non_face);
+	void update_weights(int featureIdx);
+
 	class Feature
 	{
 	public:
@@ -34,17 +61,22 @@ private:
 		Feature(int x, int y, int t1, int t2, int type);
 		Feature(int x, int y, int t1, int t2, int t3, int type);
 		float calc(float G[width][heigh][d_set]);
-		//float getThreshold() { return threshold; };
-		//float getError() { return error; };
-		//void setThreshold(float _threshold){ threshold = _threshold; };
-		//void setError(float _error) { error = _error; };
+		bool judge(float _value); //判断是否为人脸
+
+		float getThreshold() { return f_threshold; };
+		float getError() { return f_error; };
+		bool getSign() { return f_sign; };
+ 		void setThreshold(float _threshold){ f_threshold = _threshold; };
+		void setError(float _error) { f_error = _error; };
+		void setSign(bool _sign) { f_sign = _sign; };
 
 	private:
 		float fastPolyIntegration(vector<Point2i> vertices, float G[width][heigh][d_set]);
 		vector<Point2i> whitePoly;
 		vector<Point2i> blackPoly;
-		//float threshold;
-		//float error;
+		float f_threshold;
+		float f_error;
+		bool f_sign; //符合符号范围为人脸样本
 
 	};
 
@@ -52,64 +84,8 @@ private:
 	vector<Feature> classifiers;
 	vector<Sample> samples;
 	ImgReader imReader;
-	FeatureMap map;
+	vector<vector<Block>> FMap;
+	float weights[posNum + negNum];
 };
-
-class Block
-{
-public:
-	//Block() {};
-	~Block() {};
-	Block(float _val, int _Idx, bool _type) :value(_val), index(_Idx), positive(_type){};
-
-	float getValue() const { return value; };
-	int getIndex() const { return index; };
-	bool isPos() const { return positive; };
-	void setValue(float _val) { value = _val; };
-	void setIndex(int _Idx) { index = _Idx; };
-	void setPos(bool _type) { positive = _type; };
-
-private:
-	float value;
-	int index;
-	bool positive;
-};
-
-class FeatureLine
-{
-public:
-	FeatureLine() { threshold = 0; error = 0; };
-	~FeatureLine() {};
-
-	float getThreshold() const { return threshold; };
-	float getError() const { return error; };
-	void setThreshold(float _thre) { threshold = _thre; };
-	void setError(float _err) { error = _err; };
-
-	vector<Block> line;
-
-private:
-	float threshold;
-	float error;
-
-};
-
-
-class FeatureMap
-{
-public:
-	FeatureMap() {};
-	~FeatureMap() {};
-
-	vector<FeatureLine> featureMap;
-	float weight[posNum + negNum];
-	float errors[posNum + negNum];
-	
-};
-
-
-
-
-
 
 #endif

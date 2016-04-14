@@ -12,14 +12,14 @@
 class Sample
 {
 public:
-	Sample(string _dirName, int _type);
-	Sample(Mat _img, int _type);//test
+	Sample(string _dirName, bool _pos);
+	Sample(Mat _img, bool _pos);//test
 	~Sample(){};
 	//void setValue(float _value) { m_value = _value; };
 	//void setWeight(float _weight) { m_weight = _weight; };
 	//float getValue() const { return m_value; };
 	//float getWeight() const { return m_weight; };
-	float getType() const { return m_type; };
+	bool isPos() const { return m_pos; };
 
 	float m_G[width][heigh][d_set];
 
@@ -27,7 +27,7 @@ private:
 	void preCalG(Mat image);
 
 	Mat m_img;
-	int m_type;
+	bool m_pos;
 	//float m_weight;
 	//float m_value;
 

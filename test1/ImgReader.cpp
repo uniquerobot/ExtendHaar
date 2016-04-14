@@ -5,18 +5,18 @@
 type pos 为正样本
 type neg 为负样本
 */
-Sample::Sample(string _dirName, int _type){
+Sample::Sample(string _dirName, bool _pos){
 	m_img = imread(_dirName, 0); //0--灰度图
 	preCalG(m_img);
-	m_type = _type;
+	m_pos = _pos;
 	//m_weight = 0;
 	//m_value = 0;
 }
 
-Sample::Sample(Mat _img, int _type){
+Sample::Sample(Mat _img, bool _pos){
 	m_img = _img; //0--灰度图
 	preCalG(m_img);
-	m_type = _type;
+	m_pos = _pos;
 	//m_weight = 0;
 	//m_value = 0;
 }
