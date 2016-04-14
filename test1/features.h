@@ -52,6 +52,7 @@ private:
 	void train();
 	void normalize(float &all_face, float &all_non_face);
 	void update_weights(int featureIdx);
+	bool classifierJudge(float _G[width][heigh][d_set]);
 
 	class Feature
 	{

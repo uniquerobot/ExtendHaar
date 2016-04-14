@@ -10,11 +10,12 @@ using namespace std;
 # define heigh 19
 # define winsize 19
 # define d_set 4
-# define log true
+# define log_test true
 # define sqrt2 sqrt(2)
 # define posDir "posData"
 # define negDir "negData"
 # define posNum 10
 # define negNum 20
+# define MaxStage 3
 
 #endif
