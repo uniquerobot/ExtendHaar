@@ -2,6 +2,7 @@
 #define parameters_h
 
 #include <opencv2/opencv.hpp>
+#include <vector>
 
 using namespace cv;
 using namespace std;
@@ -14,6 +15,7 @@ using namespace std;
 # define sqrt2 sqrt(2)
 # define posDir "posData"
 # define negDir "negData"
+# define ClassifierDir "classifiers"
 # define posNum 10
 # define negNum 20
 # define MaxStage 3

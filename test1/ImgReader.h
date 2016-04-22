@@ -2,7 +2,6 @@
 #define ImgReader_H
 
 #include"parameters.h"
-#include <vector>
 #include <string>
 #include<io.h>
 
@@ -15,10 +14,6 @@ public:
 	Sample(string _dirName, bool _pos);
 	Sample(Mat _img, bool _pos);//test
 	~Sample(){};
-	//void setValue(float _value) { m_value = _value; };
-	//void setWeight(float _weight) { m_weight = _weight; };
-	//float getValue() const { return m_value; };
-	//float getWeight() const { return m_weight; };
 	bool isPos() const { return m_pos; };
 
 	float m_G[width][heigh][d_set];
@@ -28,8 +23,6 @@ private:
 
 	Mat m_img;
 	bool m_pos;
-	//float m_weight;
-	//float m_value;
 
 };
 

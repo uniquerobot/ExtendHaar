@@ -19,7 +19,7 @@ void main()
 {
 		HaarEvaluator haarEvaluator;
 	//	ImgReader imgReader;
-
+		
 		int i;
-	return;
+		return;
 }
