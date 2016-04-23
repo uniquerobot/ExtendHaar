@@ -32,6 +32,15 @@
 
 # define G_1 1
 # define H_1 2
+//旋转90度
+# define G_2 3
+# define H_2 4
+//旋转180度
+# define G_3 5
+# define H_3 6
+//旋转270度
+# define G_4 7
+# define H_4 8
 
 # define big true
 # define small false
