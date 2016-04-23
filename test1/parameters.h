@@ -16,8 +16,8 @@ using namespace std;
 # define posDir "posData"
 # define negDir "negData"
 # define ClassifierDir "classifiers"
-# define posNum 10
-# define negNum 20
-# define MaxStage 3
+# define posNum 100
+# define negNum 200
+# define MaxStage 200
 
 #endif
