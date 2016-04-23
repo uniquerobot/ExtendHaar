@@ -18,6 +18,6 @@ using namespace std;
 # define ClassifierDir "classifiers"
 # define posNum 100
 # define negNum 200
-# define MaxStage 200
+# define MaxStage 10
 
 #endif
